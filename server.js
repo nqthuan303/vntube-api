@@ -4,7 +4,7 @@ var express = require('express'),
   passport = require('passport'),
   mongoose = require('mongoose'),
   env = process.env.NODE_ENV || 'dev',
-  conn = 'mongodb://localhost:27017/giaohangtienloi',
+  conn = 'mongodb://localhost:27017/vntube',
   port = 3000,
   API = require('./APILib'),
   model = require('./models'),
@@ -13,7 +13,7 @@ var express = require('express'),
 mongoose.Promise = require('bluebird');
 
 if(env !== 'dev'){
-  conn = 'mongodb://nqthuan303:thuan1602@ds031632.mlab.com:31632/giaohangtienloi';
+  conn = 'mongodb://nqthuan303:thuan1602@ds031632.mlab.com:31632/vntube';
   port = process.env.PORT;
 }
 
