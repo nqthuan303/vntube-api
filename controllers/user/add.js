@@ -1,13 +1,10 @@
 'use strict';
 
-let async = require('asyncawait/async'),
-  await = require('asyncawait/await');
-
 var model = require('./../../models/user.model');
 var API = require('./../../APILib');
 var utils = require('./../../utils');
 
-module.exports = async((req, res) => {
+module.exports = (req, res) => {
   var data = req.body;
   var authInfo = utils.getAuthInfo(req.headers.authorization);
   data.createdBy = authInfo._id;
@@ -27,4 +24,4 @@ module.exports = async((req, res) => {
     res.json(result);
   });
 
-});
+};

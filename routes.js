@@ -1,11 +1,31 @@
 'use strict';
-
 let district = require('./controllers/district');
 let user = require('./controllers/user');
 let post = require('./controllers/post');
 let ward = require('./controllers/ward');
-
+let file = require('./controllers/file');
 var auth = require('./services/auth');
+
+var multer = require('multer');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/images');
+    },
+    filename: function (req, file, cb) {
+        var originalname = file.originalname;
+        var index = 0;
+        for (var i = 0; i < originalname.length; i++) {
+            if (originalname[i] === ".") index = i;
+        }
+        let fileType = originalname.substr(index);
+        cb(null, Date.now() + fileType);
+    }
+});
+
+var upload = multer({
+    storage: storage
+});
 
 module.exports = (app) => {
 
@@ -27,5 +47,8 @@ module.exports = (app) => {
 
     app.get('/api/district/listForSelect', district.listForSelect);
     app.get('/api/ward/listForSelect', ward.listForSelect);
-    
+
+
+    app.post('/api/file/upload', upload.single('file'), file.upload);
+    app.get('/api/file/list', auth.isAuthenticated, file.list);
 };
