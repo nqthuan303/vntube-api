@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 module.exports = (req, res) => {
-    let dir = __dirname + '/../../uploads/';
+    let dir = __dirname + '/../../uploads/images/';
     let itemNames = fs.readdirSync(dir);
     let objQuery = req.query;
 
@@ -37,6 +37,7 @@ module.exports = (req, res) => {
         result.push({
             name: itemName,
             type: itemType,
+            url: 'images/' + itemName,
             size: itemInfo.size
         });
     }

@@ -20,6 +20,8 @@ if(env !== 'dev'){
 mongoose.connect(conn);
 
 var app = express();
+
+app.use(express.static('uploads'));
 app.use(passport.initialize());
 
 app.use(bodyParser.json( { limit: '50mb' } ));
