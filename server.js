@@ -13,7 +13,7 @@ var express = require('express'),
 mongoose.Promise = require('bluebird');
 
 if(env !== 'dev'){
-  conn = 'mongodb://nqthuan303:thuan1602@ds031632.mlab.com:31632/vntube';
+  conn = 'mongodb://nqthuan303:thuan1602@ds135252.mlab.com:35252/vntube';
   port = process.env.PORT;
 }
 
