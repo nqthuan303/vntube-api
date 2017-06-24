@@ -12,12 +12,10 @@ var objSchema = new Schema({
     address: {type: String, required: true},
     phone_number: {type: String, required: true},
     status: {type: Number, default: 1, required: true },
-    createdAt: {type: Date, default: Date.now},
     createdBy: {type: Schema.Types.ObjectId, ref: 'user', required: true},
-    modifiedAt: {type: Date, default: Date.now},
-    modifiedBy: {type: Schema.Types.ObjectId, ref: 'user' }
+    updatedBy: {type: Schema.Types.ObjectId, ref: 'user' }
     
-});
+}, {timestamps: true});
 
 objSchema.pre('save', function(next) {
     let user = this;

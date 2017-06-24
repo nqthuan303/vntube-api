@@ -4,6 +4,7 @@ let user = require('./controllers/user');
 let post = require('./controllers/post');
 let ward = require('./controllers/ward');
 let file = require('./controllers/file');
+let tag = require('./controllers/tag');
 var auth = require('./services/auth');
 
 var multer = require('multer');
@@ -51,4 +52,12 @@ module.exports = (app) => {
 
     app.post('/api/file/upload', upload.single('file'), file.upload);
     app.get('/api/file/list', auth.isAuthenticated, file.list);
+
+    app.post('/api/tag/add', auth.isAuthenticated, tag.add);
+    app.delete('/api/tag/delete/:id', auth.isAuthenticated, tag.delete);
+    // app.get('/api/tag/findOne', auth.isAuthenticated, tag.findOne);
+    // app.get('/api/tag/getCount', auth.isAuthenticated, tag.getCount);
+    app.get('/api/tag/list', auth.isAuthenticated, tag.list);
+    app.put('/api/tag/update/:id', auth.isAuthenticated, tag.update);
+
 };

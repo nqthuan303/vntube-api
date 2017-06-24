@@ -4,4 +4,5 @@ module.exports = {
     User: require('./user.model'),
     Ward: require('./ward.model'),
     Post: require('./post.model'),
+    Tag: require('./tag.model'),
 };
